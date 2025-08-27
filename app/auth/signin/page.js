@@ -20,7 +20,10 @@ export default function SignIn() {
   const handleGoogleSignIn = async () => {
     setLoading(true)
     try {
-      window.location.href = '/api/auth-working/signin/google'
+      const result = await signIn('google', { 
+        callbackUrl: '/',
+        redirect: false 
+      })
       if (result?.ok) {
         router.push('/')
       }

@@ -89,9 +89,7 @@ export default function AdminPanel() {
           <h1 className="text-2xl font-bold text-center mb-8">Admin Access Required</h1>
           <p className="text-center text-gray-600 mb-6">Please sign in with Google first</p>
           <button
-            onClick={() => {
-              window.location.href = '/api/auth-working/signin/google'
-            }}
+            onClick={() => signIn('google', { callbackUrl: '/admin-panel-omani-2024' })}
             className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700"
           >
             Sign in with Google
