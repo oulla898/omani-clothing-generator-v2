@@ -121,7 +121,9 @@ export default function Home() {
         <div className="text-center py-8">
           <p className="text-gray-600 mb-4">Sign in to start generating beautiful Omani traditional clothing images</p>
           <button
-            onClick={() => signIn('google')}
+            onClick={() => {
+              window.location.href = '/api/auth-working/signin/google'
+            }}
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
             Sign in with Google
