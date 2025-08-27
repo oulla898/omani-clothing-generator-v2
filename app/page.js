@@ -89,9 +89,11 @@ export default function Home() {
         <div className="flex justify-between items-center mb-6 p-4 bg-gray-50 rounded-lg">
           <div className="flex items-center space-x-3">
             {session.user.image && (
-              <img 
+              <Image 
                 src={session.user.image} 
                 alt="Profile" 
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full"
               />
             )}
@@ -157,7 +159,7 @@ export default function Home() {
                   }
                 }}
               >
-                "{prompt}"
+                &quot;{prompt}&quot;
               </button>
             ))}
           </div>

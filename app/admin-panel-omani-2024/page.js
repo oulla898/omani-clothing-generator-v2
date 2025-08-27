@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useSession, signIn } from 'next-auth/react'
+import Image from 'next/image'
 
 export default function AdminPanel() {
   const { data: session, status } = useSession()
@@ -219,7 +220,7 @@ export default function AdminPanel() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           {user.image && (
-                            <img className="h-8 w-8 rounded-full mr-3" src={user.image} alt="" />
+                            <Image className="h-8 w-8 rounded-full mr-3" src={user.image} alt="" width={32} height={32} />
                           )}
                           <div>
                             <div className="text-sm font-medium text-gray-900">{user.name || 'No name'}</div>
