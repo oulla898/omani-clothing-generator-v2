@@ -12,6 +12,9 @@ const handler = NextAuth({
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt', // Use JWT instead of database sessions
+  },
   callbacks: {
     async signIn({ user, account, profile }) {
       try {
@@ -38,18 +41,28 @@ const handler = NextAuth({
         return false
       }
     },
-    async session({ session, token }) {
-      if (session?.user?.email) {
-        // Get user's current credit balance
-        const user = await prisma.user.findUnique({
-          where: { email: session.user.email },
-          select: { id: true, credits: true }
-        })
-        
-        if (user) {
-          session.user.id = user.id
-          session.user.credits = user.credits
+    async jwt({ token, user, account }) {
+      // Persist user info in JWT token
+      if (user) {
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: user.email }
+          })
+          if (dbUser) {
+            token.userId = dbUser.id
+            token.credits = dbUser.credits
+          }
+        } catch (error) {
+          console.error('Error fetching user in JWT callback:', error)
         }
+      }
+      return token
+    },
+    async session({ session, token }) {
+      // Send properties to the client
+      if (token) {
+        session.user.id = token.userId
+        session.user.credits = token.credits
       }
       return session
     }
