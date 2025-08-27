@@ -27,7 +27,7 @@ export default function Terms() {
         <section>
           <h2 className="text-2xl font-semibold mb-4">Limitation of Liability</h2>
           <p className="text-gray-700">
-            The service is provided "as is" without warranties. We are not liable for any damages arising from use of the service.
+            The service is provided &quot;as is&quot; without warranties. We are not liable for any damages arising from use of the service.
           </p>
         </section>
         
